@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>情緒童書推廣計畫 - 戰略決策儀表板</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-6 py-4">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="p-2 bg-rose-500/10 text-rose-400 rounded-lg">
+          <i data-lucide="book-heart" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight">真如老師情緒童書推廣計畫</h1>
+          <p class="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            全貌智庫戰略推演系統 | 專案：福智幸福教育 SEL 融入計畫
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs bg-slate-800/60 p-1.5 rounded-lg border border-slate-700/50">
+        <span class="px-2 py-1 bg-rose-500/20 text-rose-300 rounded font-medium">後台密碼: SEL123</span>
+        <a href="https://sel-ten.vercel.app" target="_blank" class="px-2 py-1 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded transition flex items-center gap-1">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i> 輕量回饋系統
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
+
+    <!-- 頂部核心戰略卡片 -->
+    <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
+        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-lg"><i data-lucide="compass" class="w-5 h-5"></i></div>
+        <div>
+          <span class="text-xs text-slate-400 block font-medium">幼小/國小核心</span>
+          <span class="text-sm font-semibold text-slate-100 block mt-1">照顧自己的心，關心別人的心</span>
+          <span class="text-xs text-emerald-400 block mt-1">直覺 ➔ 覺察 ➔ 關心</span>
+        </div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
+        <div class="p-3 bg-purple-500/10 text-purple-400 rounded-lg"><i data-lucide="users-2" class="w-5 h-5"></i></div>
+        <div>
+          <span class="text-xs text-slate-400 block font-medium">推廣核心機制</span>
+          <span class="text-sm font-semibold text-slate-100 block mt-1">三人協作小組</span>
+          <span class="text-xs text-slate-400 block mt-1">理念對齊 ➔ 陪伴 ➔ 成效檢核</span>
+        </div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
+        <div class="p-3 bg-rose-500/10 text-rose-400 rounded-lg"><i data-lucide="activity" class="w-5 h-5"></i></div>
+        <div>
+          <span class="text-xs text-slate-400 block font-medium">教師能量支持</span>
+          <span class="text-sm font-semibold text-slate-100 block mt-1">能量覺察機制 (紅綠燈)</span>
+          <span class="text-xs text-rose-400 block mt-1">🔴連續耗能將啟動主動介入</span>
+        </div>
+      </div>
+      <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-start gap-4">
+        <div class="p-3 bg-amber-500/10 text-amber-400 rounded-lg"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
+        <div>
+          <span class="text-xs text-slate-400 block font-medium">核心講師培訓</span>
+          <span class="text-sm font-semibold text-slate-100 block mt-1">10週共14小時計畫</span>
+          <span class="text-xs text-amber-400 block mt-1">2026年3月29日正式啟動</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 主區塊：計畫切換與內容展示 -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- 左側：計畫切換選單與模擬器 -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-slate-950 border border-slate-800 p-5 rounded-xl space-y-4">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400">選擇推廣方案草案</h2>
+          <div class="space-y-2">
+            <button onclick="switchTab('planA')" id="btn-planA" class="w-full text-left p-4 rounded-lg border transition-all duration-200 block bg-slate-900 border-rose-500/30 text-slate-100 shadow-md shadow-rose-950/20">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-sm text-rose-400">方案 A</span>
+                <span class="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full font-medium">點線面深耕</span>
+              </div>
+              <p class="font-bold text-base">【學校體制型】校園情緒韌性計畫</p>
+              <p class="text-xs text-slate-400 mt-1">對接五年計畫，主打同校共備與 PLC 深入教學現場。</p>
+            </button>
+
+            <button onclick="switchTab('planB')" id="btn-planB" class="w-full text-left p-4 rounded-lg border border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700 hover:text-slate-200 transition-all duration-200 block">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-sm text-sky-400">方案 B</span>
+                <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full font-medium">心靈生態圈</span>
+              </div>
+              <p class="font-bold text-base text-slate-200">【家庭社會型】親子心靈陪伴計畫</p>
+              <p class="text-xs text-slate-500 mt-1">結合家庭教育中心、圖書館與里仁，建構無縫陪伴圈。</p>
+            </button>
+
+            <button onclick="switchTab('planC')" id="btn-planC" class="w-full text-left p-4 rounded-lg border border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700 hover:text-slate-200 transition-all duration-200 block">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-sm text-emerald-400">方案 C</span>
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-medium">輕量數位化</span>
+              </div>
+              <p class="font-bold text-base text-slate-200">【數位輕量型】幸福微光體驗計畫</p>
+              <p class="text-xs text-slate-500 mt-1">針對教師高耗能痛點，主打幸福三人行非同步微共學。</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- 互動模擬器 -->
+        <div class="bg-slate-950 border border-slate-800 p-5 rounded-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="calculator" class="w-4 h-4 text-rose-400"></i> 推廣效益沙盤模擬
+            </h2>
+            <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">115年度預算估算</span>
+          </div>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1 flex justify-between">
+                <span>預估投入種子師資 (人):</span>
+                <span id="val-teachers" class="text-rose-400 font-bold">50 人</span>
+              </label>
+              <input type="range" id="input-teachers" min="10" max="200" value="50" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-500" oninput="calculateImpact()">
+            </div>
+
+            <div>
+              <label class="block text-slate-400 mb-1 flex justify-between">
+                <span>預估覆蓋學校/機構數 (所):</span>
+                <span id="val-schools" class="text-rose-400 font-bold">20 所</span>
+              </label>
+              <input type="range" id="input-schools" min="5" max="100" value="20" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-500" oninput="calculateImpact()">
+            </div>
+
+            <div class="pt-3 border-t border-slate-800 space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-400">預估受惠學童數:</span>
+                <span id="result-students" class="font-bold text-emerald-400 text-base">3,000 人</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-400">預估產生教案回饋數:</span>
+                <span id="result-feedback" class="font-bold text-sky-400 text-base">100 份</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-slate-400">所需三人協作小組數:</span>
+                <span id="result-teams" class="font-bold text-purple-400 text-base">17 組</span>
+              </div>
+            </div>
+            <p class="text-[10px] text-slate-500 italic mt-2">＊註：受惠人數依每位教師入校試教帶動3個班級，每班20人估算。教案回饋依每學期每人最低回報2次計算。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側：方案詳細細節 -->
+      <div class="lg:col-span-8 bg-slate-950 border border-slate-800 rounded-xl p-6 space-y-6">
+        
+        <!-- 方案A內容 -->
+        <div id="content-planA" class="space-y-6">
+          <div class="border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 rounded font-medium">教育體制導向</span>
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">對接教育部五年計畫</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100">方案 A：【點線面學校深耕計畫】校園情緒韌性計畫</h3>
+          </div>
+
+          <!-- 核心策略 -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-rose-500 rounded-full"></span> 核心策略
+            </h4>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              以學校為基地，依循「教師成長藍圖」將童書轉化為標準的 SEL 課程鷹架。藉由校內同學程或跨校 PLC 專業學習社群，共同研討「覺思共行」(覺察—思考—共感—行動) 的四步驟教學設計，促使童書教育成果可視化。
+            </p>
+          </div>
+
+          <!-- 三大管道具體做法 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-rose-500 rounded-full"></span> 三大核心管道試教與推廣
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-rose-400 flex items-center gap-1"><i data-lucide="home" class="w-3.5 h-3.5"></i> 福智內部</div>
+                <p class="text-xs text-slate-300">結合<b>妙慧幼兒園與大專青少班</b>。由內部種子教師進行首波試教，建立童書情境與 SEL 結合的經典範例。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-rose-400 flex items-center gap-1"><i data-lucide="building" class="w-3.5 h-3.5"></i> 公部門</div>
+                <p class="text-xs text-slate-300">向各縣市<b>教育局/處特教科或輔導諮商中心</b>提案，將情緒童書教學納入「教師專業研習實數」官方核發項目。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-rose-400 flex items-center gap-1"><i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> 學校端</div>
+                <p class="text-xs text-slate-300">進入<b>合作國小</b>。利用晨讀 10 分鐘或彈性學習課程，搭配「情緒貼紙牆」進行視覺化表達與形成性評量。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 師資與教案配套 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-rose-500 rounded-full"></span> 師資培訓與教案設計
+            </h4>
+            <ul class="text-xs text-slate-300 space-y-2 bg-slate-900/60 p-4 rounded-lg border border-slate-800">
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-bold">1. 教案策略：</span>
+                <span>由教案組設計對接「幼教/國小學習階段重點」（從直覺反應 ➔ 停下來覺察感受 ➔ 願意關心他人）的標準教案，附帶教學指引小撇步。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-bold">2. 師資培力：</span>
+                <span>納入「2026年核心講師培訓計畫」（3/29起，週日08:30-10:00，10週共14小時），進行試講評估，考核通過後授權為擴散期核心推廣員。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400 font-bold">3. 溝通回饋：</span>
+                <span>教師需每學期於系統回報 2 次實施現況（期初與期末，50字心得+3張照片），遭遇🔴耗能時，推廣召集人於24小時內啟動關懷。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 獨家創新方案 -->
+          <div class="bg-gradient-to-r from-rose-950/20 via-slate-950 to-slate-950 border border-rose-500/10 p-4 rounded-xl flex items-start gap-3">
+            <div class="p-2 bg-rose-500/10 text-rose-400 rounded-lg"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+            <div>
+              <span class="text-xs font-bold text-rose-400 block">獨家創新方案：【校園情緒解憂信箱】</span>
+              <p class="text-xs text-slate-300 mt-1">配合童書中的角色情境，在校園設立實體或線上的「情緒解憂信箱」。學生可透過便利貼（Exit Ticket 概念）匿名投遞困擾，由培訓過的「大班/高年級心靈小天使」在導師指導下運用童書故事回信，建立校園互助共好文化。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 方案B內容 -->
+        <div id="content-planB" class="space-y-6 hidden">
+          <div class="border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2 py-0.5 rounded font-medium">社會家庭導向</span>
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">心靈生態圈建構</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100">方案 B：【心靈生態圈家庭共讀計畫】親子心靈陪伴計畫</h3>
+          </div>
+
+          <!-- 核心策略 -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-sky-500 rounded-full"></span> 核心策略
+            </h4>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              將情緒童書作為連結「家庭與社區」的橋樑。不拘泥於學校正課，而是以「親子共讀」、「情境遊戲」降低接觸門檻。引導家長共同參與 SEL 學習，建立家校共融的溫暖陪伴圈。
+            </p>
+          </div>
+
+          <!-- 三大管道具體做法 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-sky-500 rounded-full"></span> 三大核心管道試教與推廣
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-sky-400 flex items-center gap-1"><i data-lucide="home" class="w-3.5 h-3.5"></i> 福智內部</div>
+                <p class="text-xs text-slate-300">結合<b>廣論班家長社群與里仁門市</b>。於里仁門市設立「心靈童書共讀角」，並在廣論班推動「親子幸福共讀營」。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-sky-400 flex items-center gap-1"><i data-lucide="building" class="w-3.5 h-3.5"></i> 公部門</div>
+                <p class="text-xs text-slate-300">結合<b>縣市家庭教育中心與公立圖書館</b>。辦理「週末親子情緒繪本玩一玩」公益推廣講座，擴展社會教育影響力。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-sky-400 flex items-center gap-1"><i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> 學校端</div>
+                <p class="text-xs text-slate-300">進入<b>學校志工家長社群</b>。培訓故事媽媽入班說故事，並設計「家庭聯絡簿之幸福情緒互動指引」自然融入家庭。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 師資與教案配套 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-sky-500 rounded-full"></span> 師資培訓與教案設計
+            </h4>
+            <ul class="text-xs text-slate-300 space-y-2 bg-slate-900/60 p-4 rounded-lg border border-slate-800">
+              <li class="flex items-start gap-2">
+                <span class="text-sky-400 font-bold">1. 教案策略：</span>
+                <span>教案組設計「親子共讀對話牌卡」與輕量「情境教具包」，讓不具備專業心理背景的家長與志工也能輕鬆上手。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky-400 font-bold">2. 師資培力：</span>
+                <span>以「探索期」故事志工為培力主體，主打每週日晚20:00-20:30的「線上微學習」（8/22起），交流故事實施心得。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-sky-400 font-bold">3. 溝通回饋：</span>
+                <span>鼓勵家長及志工透過「幸福三人行」機制，上傳親子共讀的溫馨照片與孩子的一句話反思至 Vercel 系統平台。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 獨家創新方案 -->
+          <div class="bg-gradient-to-r from-sky-950/20 via-slate-950 to-slate-950 border border-sky-500/10 p-4 rounded-xl flex items-start gap-3">
+            <div class="p-2 bg-sky-500/10 text-sky-400 rounded-lg"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+            <div>
+              <span class="text-xs font-bold text-sky-400 block">獨家創新方案：【心靈童書共備野餐日】</span>
+              <p class="text-xs text-slate-300 mt-1">打破教室空間藩籬，於公園或社區綠地辦理「大自然中的心靈繪本派對」。透過情境遊戲引導孩子親近土地與自己的心，將「照顧自己的心」轉化為在大自然中奔跑、覺察微風與呼吸的具體幸福行為。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 方案C內容 -->
+        <div id="content-planC" class="space-y-6 hidden">
+          <div class="border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-medium">數位輕量導向</span>
+              <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">低干擾、成效可視</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100">方案 C：【幸福微光數位體驗計畫】幸福微光體驗計畫</h3>
+          </div>
+
+          <!-- 核心策略 -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-emerald-500 rounded-full"></span> 核心策略
+            </h4>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              針對一線教師高壓力、高耗能痛點，秉持「低度干擾、數位輕量、成效可視」三大原則。以通訊軟體為載體，進行非同步的「幸福三人行」微共學，減輕行政負擔。
+            </p>
+          </div>
+
+          <!-- 三大管道具體做法 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-emerald-500 rounded-full"></span> 三大核心管道試教與推廣
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="home" class="w-3.5 h-3.5"></i> 福智內部</div>
+                <p class="text-xs text-slate-300">利用<b>官方 LINE@ 自動回覆系統與數位客服</b>。教師可透過 LINE 輸入關鍵字，一鍵獲取童書電子教案、語音檔與引導圖卡。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="building" class="w-3.5 h-3.5"></i> 公部門</div>
+                <p class="text-xs text-slate-300">與<b>衛福部或地方心衛中心</b>合作。舉辦線上「教師情緒韌性沙龍」，提供輕量化的數位情緒自救包，提高知名度。</p>
+              </div>
+              <div class="bg-slate-900 border border-slate-800/80 p-4 rounded-lg space-y-2">
+                <div class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> 學校端</div>
+                <p class="text-xs text-slate-300">對<b>全台高能耗、無暇備課的導師</b>。提供「15分鐘微教案（無須大型簡報）」，運用「非同步分享教學截圖」完成共學。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 師資與教案配套 -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-3 bg-emerald-500 rounded-full"></span> 師資培訓與教案設計
+            </h4>
+            <ul class="text-xs text-slate-300 space-y-2 bg-slate-900/60 p-4 rounded-lg border border-slate-800">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">1. 教案策略：</span>
+                <span>設計「數位微課模組」，將童書故事拆解成 5 分鐘的有聲故事、10 分鐘的隨堂討論圖卡，極易融入現有課表。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">2. 師資培力：</span>
+                <span>著重「探索期教師」之低門檻參與。以線上「幸福三人行」（雲端共備 ➔ 亮點觀課 ➔ 幸福議課）完成非同步培訓與共識。</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400 font-bold">3. 溝通回饋：</span>
+                <span>運用線上表單（Vercel系統，後台密碼: SEL123）一分鐘勾選「實施模式（綠、黃、紅燈）」，紅燈系統會自動向召集人發出支援警報。</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 獨家創新方案 -->
+          <div class="bg-gradient-to-r from-emerald-950/20 via-slate-950 to-slate-950 border border-emerald-500/10 p-4 rounded-xl flex items-start gap-3">
+            <div class="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+            <div>
+              <span class="text-xs font-bold text-emerald-400 block">獨家創新方案：【心靈紅綠燈 Line 互動模組】</span>
+              <p class="text-xs text-slate-300 mt-1">開發輕量化的 Line 互動機器人，讓教師與家長每天花 1 分鐘與孩子一起做「能量紅綠燈覺察」。機器人會根據當下的心靈燈號，自動推播童書中最適合的溫暖音檔與「覺思共行」靜心指引，達成成效可視化的目的。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部：90天戰略落地藍圖 (三案通用) -->
+        <div class="border-t border-slate-800 pt-6 space-y-4">
+          <h4 class="text-sm font-bold text-slate-300 flex items-center gap-1.5">
+            <i data-lucide="milestone" class="w-4 h-4 text-rose-400"></i> 90 天落地戰略時程藍圖
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="bg-slate-900/40 p-4 rounded-lg border border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 bg-rose-500/10 text-rose-400 rounded font-bold">Phase 1: 0 - 30 天</span>
+              <p class="font-bold text-slate-200">研發準備與首波試教</p>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li>教案組完成童書教案與牌卡</li>
+                <li>召開三人協作小組共備會議</li>
+                <li>妙慧幼兒園啟動第一波試教</li>
+              </ul>
+            </div>
+            <div class="bg-slate-900/40 p-4 rounded-lg border border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 bg-sky-500/10 text-sky-400 rounded font-bold">Phase 2: 31 - 60 天</span>
+              <p class="font-bold text-slate-200">師資培力與管道接洽</p>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li>啟動 10 週核心講師培訓課程</li>
+                <li>拜會家庭教育中心與特教科</li>
+                <li>8/22 週日晚線上微學習開課</li>
+              </ul>
+            </div>
+            <div class="bg-slate-900/40 p-4 rounded-lg border border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 rounded font-bold">Phase 3: 61 - 90 天</span>
+              <p class="font-bold text-slate-200">全面試教與成果發布</p>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li>校園晨讀與班會課試教鋪開</li>
+                <li>收集 Vercel 系統平台回饋數據</li>
+                <li>辦理全區統整與修訂成果發布</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    // 初始化 Lucide 圖標
+    lucide.createIcons();
+
+    function switchTab(planId) {
+      // 隱藏所有內容
+      document.getElementById('content-planA').classList.add('hidden');
+      document.getElementById('content-planB').classList.add('hidden');
+      document.getElementById('content-planC').classList.add('hidden');
+
+      // 移除所有按鈕的啟用樣式，恢復成預設樣式
+      const buttons = ['planA', 'planB', 'planC'];
+      buttons.forEach(p => {
+        const btn = document.getElementById('btn-' + p);
+        btn.className = "w-full text-left p-4 rounded-lg border border-slate-800 bg-slate-950 text-slate-400 hover:border-slate-700 hover:text-slate-200 transition-all duration-200 block";
+      });
+
+      // 顯示選中的內容
+      document.getElementById('content-' + planId).classList.remove('hidden');
+
+      // 設定選中的按鈕樣式
+      const activeBtn = document.getElementById('btn-' + planId);
+      if (planId === 'planA') {
+        activeBtn.className = "w-full text-left p-4 rounded-lg border transition-all duration-200 block bg-slate-900 border-rose-500/30 text-slate-100 shadow-md shadow-rose-950/20";
+        updateColors('rose');
+      } else if (planId === 'planB') {
+        activeBtn.className = "w-full text-left p-4 rounded-lg border transition-all duration-200 block bg-slate-900 border-sky-500/30 text-slate-100 shadow-md shadow-sky-950/20";
+        updateColors('sky');
+      } else if (planId === 'planC') {
+        activeBtn.className = "w-full text-left p-4 rounded-lg border transition-all duration-200 block bg-slate-900 border-emerald-500/30 text-slate-100 shadow-md shadow-emerald-950/20";
+        updateColors('emerald');
+      }
+      calculateImpact();
+    }
+
+    function updateColors(theme) {
+      const sliders = [document.getElementById('input-teachers'), document.getElementById('input-schools')];
+      sliders.forEach(slider => {
+        slider.className = `w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-${theme}-500`;
+      });
+      
+      const teacherVal = document.getElementById('val-teachers');
+      const schoolVal = document.getElementById('val-schools');
+      teacherVal.className = `text-${theme}-400 font-bold`;
+      schoolVal.className = `text-${theme}-400 font-bold`;
+    }
+
+    function calculateImpact() {
+      const teachers = parseInt(document.getElementById('input-teachers').value);
+      const schools = parseInt(document.getElementById('input-schools').value);
+      
+      document.getElementById('val-teachers').innerText = teachers + " 人";
+      document.getElementById('val-schools').innerText = schools + " 所";
+
+      // 模擬公式
+      // 受惠學童 = 教師數 * 3個班 * 20人
+      const students = teachers * 3 * 20;
+      // 預估教案回饋數 = 教師數 * 2
+      const feedback = teachers * 2;
+      // 協作小組 = 向上取整(教師數 / 3)
+      const teams = Math.ceil(teachers / 3);
+
+      document.getElementById('result-students').innerText = students.toLocaleString() + " 人";
+      document.getElementById('result-feedback').innerText = feedback + " 份";
+      document.getElementById('result-teams').innerText = teams + " 組";
+    }
+
+    // 初始計算
+    calculateImpact();
+  </script>
+</body>
+</html>
