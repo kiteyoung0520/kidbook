@@ -2558,6 +2558,7 @@
           practiceDay: 1,
           practiceUsed: [],
           penChar: analectsQuotes[0][0],
+          penIndex: 0,
           penDone: [],
           talked: [],
           legacyRealm: 0,
@@ -2590,6 +2591,7 @@
         n.penChar = analectsQuotes.some(([q]) => q === old.penChar)
           ? old.penChar
           : analectsQuotes[0][0];
+        n.penIndex = Number.isInteger(old.penIndex) ? old.penIndex : 0;
         n.penDone = Array.isArray(old.penDone) ? old.penDone : [];
         n.talked = Array.isArray(old.talked) ? old.talked : [];
         n.practiceDay = old.practiceDay || n.day || 1;
@@ -2885,6 +2887,15 @@
         const done = (s.penDone || []).includes(current[0]);
         return `<div class="card"><div class="flex between"><div><h2>《論語》硬筆臨摹</h2><p class="muted">採用芫荽硬筆楷書。先看範字，再沿淡字描紅；熟悉後可切換背臨。</p></div>${btn("返回修習", "go", "home")}</div><div class="pen-layout"><div><div class="pen-canvas-wrap"><div id="penGuide">${current[0]}</div><canvas id="penCanvas" aria-label="論語硬筆臨摹畫布"></canvas></div><div class="flex" style="margin-top:12px;justify-content:center">${btn("清除重寫", "pen-clear")}${btn(done ? "今日已完成" : "完成本句練習", "pen-finish", "", "gold")}</div></div><aside><div class="note"><b>今日句子</b><br><span style="font-family:'Iansui','KaiTi',serif;font-size:22px">${current[0]}</span><br><span class="tiny muted">《論語·${current[1]}》</span></div><div style="margin-top:12px">${btn("換一句隨機練習", "pen-random", "", "primary")}</div><h3 style="margin-top:16px">句子選擇</h3><div class="choices">${analectsQuotes.map(([text,chapter]) => `<button class="choice ${text === current[0] ? "selected" : ""}" data-act="pen-char" data-id="${text}"><span style="font-family:'Iansui','KaiTi',serif;font-size:18px">${text}</span><small>《論語·${chapter}》</small></button>`).join("")}</div><p class="tiny muted" style="margin-top:12px">完成每日第一句，可獲「觀照 +1、修為 +1」；不自動評斷字美醜。</p></aside></div></div>`;
       }
+      function analectsCharPenView() {
+        const current = analectsQuotes.find(([text]) => text === s.penChar) || analectsQuotes[0];
+        const chars = Array.from(current[0]).filter(c => /[\u4e00-\u9fff]/.test(c));
+        const index = Math.max(0, Math.min(s.penIndex || 0, chars.length - 1));
+        const char = chars[index];
+        const token = `${current[0]}#${index}`;
+        const done = (s.penDone || []).includes(token);
+        return `<div class="card"><div class="flex between"><div><h2>《論語》逐字硬筆臨摹</h2><p class="muted">手機版一次只練一個字。沿芫荽硬筆範字描紅，完成後換下一字。</p></div>${btn("返回修習", "go", "home")}</div><div class="pen-layout"><div><div class="pen-canvas-wrap"><div id="penGuide">${char}</div><canvas id="penCanvas" aria-label="論語單字硬筆臨摹畫布"></canvas></div><div class="flex" style="margin-top:12px;justify-content:center">${btn("上一字", "pen-prev", "", "ghost")}${btn("清除重寫", "pen-clear")}${btn(done ? "已記錄" : "完成此字", "pen-finish", "", "gold")}${btn(index === chars.length - 1 ? "本句完成" : "下一字", "pen-next", "", "primary")}</div></div><aside><div class="note"><b>第 ${index + 1}／${chars.length} 字：${char}</b><br><span style="font-family:'Iansui','KaiTi',serif;font-size:20px">${current[0]}</span><br><span class="tiny muted">《論語·${current[1]}》</span></div><div style="margin-top:12px">${btn("換一句隨機練習", "pen-random", "", "primary")}</div><h3 style="margin-top:16px">選擇句子</h3><div class="choices">${analectsQuotes.map(([text,chapter]) => `<button class="choice ${text === current[0] ? "selected" : ""}" data-act="pen-char" data-id="${text}"><span style="font-family:'Iansui','KaiTi',serif;font-size:18px">${text}</span><small>《論語·${chapter}》</small></button>`).join("")}</div></aside></div></div>`;
+      }
       function homeView() {
         const mainDone = mainOrder.filter((id) => s.done.includes(id)).length,
           mindDone = mindOrder.filter((id) => s.done.includes(id)).length;
@@ -2972,7 +2983,7 @@
         else if (s.screen === "journal") h += journalView();
         else if (s.screen === "bond") h += bondView();
         else if (s.screen === "settings") h += settingsView();
-        else if (s.screen === "pen") h += analectsPenView();
+        else if (s.screen === "pen") h += analectsCharPenView();
         else if (s.screen === "skills")
           h += `<div class="card"><h2>修為與技能</h2>${progressCard()}${statsHtml()}${skillHtml()}${activityPanel()}</div>`;
         h += "</main>";
@@ -3048,17 +3059,20 @@
           toast("請先完成幾筆書寫，再記錄練習。 ");
           return;
         }
+        const chars = Array.from(s.penChar).filter(c => /[\u4e00-\u9fff]/.test(c));
+        const index = Math.max(0, Math.min(s.penIndex || 0, chars.length - 1));
+        const token = `${s.penChar}#${index}`, char = chars[index];
         s.penDone = s.penDone || [];
-        if (!s.penDone.includes(s.penChar)) {
-          s.penDone.push(s.penChar);
+        if (!s.penDone.includes(token)) {
+          s.penDone.push(token);
           if (!s.practiceUsed.includes("硬筆")) {
             s.practiceUsed.push("硬筆");
             updateSkill("觀照", 1);
             s.cultivation = (s.cultivation || 0) + 1;
-            addLog(`硬筆字練習「${s.penChar}」完成：觀照 +1，修為 +1`);
+            addLog(`《論語》硬筆練習「${char}」完成：觀照 +1，修為 +1`);
             toast("已記錄練習｜觀照 +1、修為 +1");
           } else {
-            addLog(`硬筆字練習「${s.penChar}」完成`);
+            addLog(`《論語》硬筆練習「${char}」完成`);
             toast("已記錄這個字的練習");
           }
         } else toast("這個字今天已記錄，可繼續重寫。 ");
@@ -3217,12 +3231,27 @@
             break;
           case "pen-char":
             s.penChar = id;
+            s.penIndex = 0;
             save();
             render();
             break;
           case "pen-random": {
             const options = analectsQuotes.filter(([text]) => text !== s.penChar);
             s.penChar = options[Math.floor(Math.random() * options.length)][0];
+            s.penIndex = 0;
+            save();
+            render();
+            break;
+          }
+          case "pen-prev":
+            s.penIndex = Math.max(0, (s.penIndex || 0) - 1);
+            save();
+            render();
+            break;
+          case "pen-next": {
+            const total = Array.from(s.penChar).filter(c => /[\u4e00-\u9fff]/.test(c)).length;
+            if ((s.penIndex || 0) >= total - 1) { toast("這一句已練完，可換一句繼續。 "); break; }
+            s.penIndex = (s.penIndex || 0) + 1;
             save();
             render();
             break;
