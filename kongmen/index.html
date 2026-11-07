@@ -1020,6 +1020,104 @@
         ["君子欲訥於言，而敏於行。", "里仁"], ["知者不惑，仁者不憂，勇者不懼。", "子罕"],
         ["工欲善其事，必先利其器。", "衛靈公"], ["過而不改，是謂過矣。", "衛靈公"],
       ];
+      const structureRules = [
+        [1,"天覆者，凡畫皆冒於其下","上部如帽覆蓋，下方筆畫收在其內。","宇宙定"],
+        [2,"地載者，有畫皆托於其上","下部穩穩承托，上方筆畫不可墜出。","至孟聖"],
+        [3,"讓左者，左昂右低","左部為主時左高右低，主次分明。","部幼即"],
+        [4,"讓右者，右伸左縮","右部為主時右長左短，左側收斂。","績議讀"],
+        [5,"橫擔者，中畫宜長","主橫拉長，形成全字的穩定骨架。","喜吾安"],
+        [6,"直卓者，中豎宜正","中豎須垂直有力，守住字的重心。","甲平幹午"],
+        [7,"勾拿法，其身不宜曲短","勾身不宜彎曲短促，要舒展有力。","葡萄蜀葛"],
+        [8,"勾衄法，其勢不可直長","屈勾宜含蓄，不可僵直過長。","句勻勿"],
+        [9,"畫短撇長","橫畫較短，撇畫須舒展。","左在尤龍"],
+        [10,"畫長撇短","橫畫較長，撇畫相對收短。","右有灰"],
+        [11,"畫短直長，撇捺宜伸","橫短豎長時，撇捺向左右展開。","木本朱"],
+        [12,"畫長直短，撇捺宜縮","橫長豎短時，撇捺適度收斂。","樂集"],
+        [13,"橫長直短","主橫伸展，直畫不宜過長。","十上下士"],
+        [14,"橫短直長","橫畫收短，直畫挺拔。","才鬥豐井"],
+        [15,"上下有畫，上短下長","上下橫畫相對時，上短下長以穩住字腳。","丕正亞"],
+        [16,"左右有直，左收右展","左右豎畫並列時，左收而右伸。","目自因固"],
+        [17,"左撇右直，左縮右垂","左撇短收，右豎向下伸展。","川升邦"],
+        [18,"左直右撇，左斂右放","左豎收斂，右撇舒展。","伊侈修"],
+        [19,"點復者，偃仰向背求變","多點須方向、大小有變化，避免整齊呆板。","亦赤然"],
+        [20,"畫重者，麟羽參差化板","多橫須長短錯落、間距均勻。","三冉"],
+        [21,"兩平者，左右宜均","左右相近的兩部要大小均衡。","顏顧"],
+        [22,"三合者，中間務正","三部並列時，中部須端正居中。","禦謝樹"],
+        [23,"二段者，上下平分","上下兩部大致均衡，中間稍作鬆緊變化。","需留"],
+        [24,"三聯者，頭尾伸縮停勻","上中下三段須伸縮得當、重心連貫。","章意素累"],
+        [25,"左旁小者齊其上","較小的左偏旁靠上對齊。","吸呼峰峻"],
+        [26,"右邊少者齊其下","較小的右部靠下對齊。","和知細"],
+        [27,"外四疊者，體格必整","外部多口疊合時，整體宜方正。","囂器"],
+        [28,"內四疊者，布置勻密","內部重疊筆畫要均勻緊密。","爽齒"],
+        [29,"斜勒者不宜平","斜勢筆畫不可寫平，須保留動勢。","七也"],
+        [30,"平勒者不宜倚","應平的橫畫不可傾斜，以免失去端正。","雲去且旦"],
+        [31,"縱捺者，攢頭收尾","縱捺起筆集中，行筆舒展後收住尾端。","丈尺史又"],
+        [32,"縱戈最忌力弱身彎","斜鉤須挺健有力，不可軟弱彎曲。","武成或"],
+        [33,"橫戈不厭曲","臥鉤可略帶弧勢，蓄力後出鋒。","恩息必志"],
+        [34,"伸勾貴抱持","伸鉤宜有向內環抱之勢。","勉旭拋"],
+        [35,"承上之乂，正中為貴","承接上部的交叉或撇捺要居中。","天父外文"],
+        [36,"屈勾之勢，退縮斯宜","屈鉤宜適度收縮，不可外張過度。","鳩輝"],
+        [37,"馬齒法，勾鋒對四點之中","馬、鳥下鉤出鋒要對準四點中央。","鳥馬"],
+        [38,"上平之字宜齊首","上緣各部應對齊，形成整齊字頭。","師明既野"],
+        [39,"下平之字宜齊足","下緣各部應落在同一基線。","朝故辰"],
+        [40,"重捺者，須有縮有伸","多個捺畫須分主次，有收有放。","談茶黍"],
+        [41,"疊趯者，或挑或駐","多個鉤提要有顯藏變化，不可雷同。","禁林森"],
+        [42,"上下勾趯，下明上暗","上下皆有鉤時，下鉤明顯、上鉤含蓄。","哥柔"],
+        [43,"俯仰勾挑，俯縮仰伸","向下的鉤收短，向上的鉤伸展。","冠寇宅"],
+        [44,"上佔地步者，上寬","上部為主時，字頭宜寬以覆下。","普皆齊"],
+        [45,"下佔地步者，下闊","下部為主時，字腳宜寬以承上。","表禹"],
+        [46,"右佔者，右宜豐","右部為主時可寫得較豐滿。","施騰靖"],
+        [47,"左佔者，左宜大","左部為主時可寫得較寬大。","敬斂劉"],
+        [48,"左右佔者，中宜遜","左右兩側較強時，中部應收小。","弼辯衍仰"],
+        [49,"中間佔者，中獨雄","中部為主時，中間應突出而有力。","擲番"],
+        [50,"上下佔者，中宜小","上下兩部較強時，中段適度收縮。","鶯寡"],
+        [51,"縱腕宜曲勁","縱向彎鉤要彎而有力。","風飛氣"],
+        [52,"橫腕貴圓雋","橫向彎鉤宜圓潤俊秀。","先見元毛"],
+        [53,"縱撇惡鼠尾","長撇須送力至末端，避免細弱拖尾。","庭居底"],
+        [54,"聯撇惡排牙","連續撇畫須改變角度與長短。","友及反皮"],
+        [55,"三撇法，下撇頂上撇之腹","三撇依次承接，間距均勻且重心居中。","形須修參"],
+        [56,"三點法，首尾筆勢相應","三點水的末點出鋒須與首點呼應。","治洪流海"],
+        [57,"卜字直勿偏，對上截中縫","卜形須端正，對準上部中線。","是足走"],
+        [58,"土字直勿偏，對下截左豎","土形須端正，與下部左豎對應。","者老考"],
+        [59,"錯綜者，貴迎讓穿插","複雜部件要彼此避讓穿插，不可紛亂。","繁馨"],
+        [60,"縝密者，宜布置安排","緊密結構須安排疏密，避免擁擠。","繼纏"],
+        [61,"當懸針者，不作垂露","末豎應尖收時須自然出鋒。","車申中巾"],
+        [62,"當垂露者，不作懸針","末豎應圓收時須沉著有力。","卓單"],
+        [63,"體雖宜斜，字心必正","外形雖斜，整體重心仍須穩正。","易乃母力"],
+        [64,"形本自正，骨力必豎","端正字形要寫出挺拔骨力。","正主本王"],
+        [65,"字本瘦者，其形勿短","瘦長字形不可壓扁縮短。","身目耳貝"],
+        [66,"身本矮者，用筆宜肥","扁矮字形宜厚實，不可過瘦。","白工日四"],
+        [67,"蓋下之法，撇捺宜均","人字頭覆下時，撇捺要均衡展開。","會合金命"],
+        [68,"趁下之勢，左右相稱","上部撇捺承接下部時，左右須相稱。","琴吝各穀"],
+        [69,"雖宜肥而勿腫","筆畫雖宜厚實，仍須保留內部空間。","土山公止"],
+        [70,"雖宜瘦而勿臞","字形雖宜修長，不可乾瘦失力。","了寸才卜"],
+        [71,"疏者豐之","筆畫少的字宜寫得開展豐滿。","上下千小"],
+        [72,"密者勻之","筆畫多的字要間距均勻。","贏鼎"],
+        [73,"堆疊者消納之","重複部件要納入整體，不擠不散。","晶磊森"],
+        [74,"積累者清晰之","繁複累積的筆畫仍須交代清楚。","糜零靡"],
+        [75,"下畫微長，承右豎末","封口下橫稍長，穩穩承接右豎。","口日田"],
+        [76,"末勾微拖，似有帶下之勢","末鉤略向下帶，姿態自然。","丁宇亭"],
+        [77,"走之繞中字，上大下小","走之內的主體上略大、下略收。","遠還逮"],
+        [78,"畫長撇短者，右不用捺","橫長撇短時，右側多以點收束。","莫矣矢契"],
+        [79,"左豎宜短，右豎宜長","左右豎畫並見時，左短右長。","作仰沖行"],
+        [80,"左豎宜長，右豎宜短","特定結構中左豎伸長、右豎收短。","臣巨佳"],
+        [81,"寶蓋之勾，如鳥視胸","寶蓋鉤須向內含蓄回望。","官空宰"],
+        [82,"排疊之畫，如工鏤物","密集排列的筆畫要精準、清楚。","赫鷓鬻"],
+        [83,"從卩之字準此","單耳旁須位置得當、豎畫挺健。","印叩卻"],
+        [84,"從邑之字準此","右耳旁宜下垂舒展。","郊鄭鄰"],
+        [85,"從阜之字準此","左耳旁宜收窄並與右部協調。","阪陔"],
+        [86,"從登字頭者準此","登字頭撇捺與點畫須左右呼應。","登凳"],
+        [87,"從祭字頭者準此","祭字頭各筆須緊密而清楚。","祭蔡察"],
+        [88,"從聚字底者準此","聚字底的撇捺筆勢要聚而不亂。","聚"],
+        [89,"從豕之字準此","豕部彎鉤與撇捺要分清主次。","家象豪"],
+        [90,"單人旁之字準此","單人旁宜窄長，與右部留出呼應空間。","仁儀俯休"],
+        [91,"雙人旁之字準此","雙人旁兩撇有長短，豎畫須挺直。","徐循行很"],
+        [92,"豎彎鉤之字準此","豎彎鉤轉折須圓活，鉤鋒向上。","乳亂色包"],
+      ];
+      function structureTipFor(char) {
+        const rule = structureRules.find((item) => item[3].includes(char));
+        return rule || [0,"通用結構觀察","原帖例字未直接收錄此字，不強行套用。先看重心是否居中、筆畫疏密是否均勻、主筆是否突出。",""];
+      }
       const story = {
         market: {
           title: "市集的誤會",
@@ -2558,6 +2656,7 @@
           practiceDay: 1,
           practiceUsed: [],
           penChar: analectsQuotes[0][0],
+          penRule: 0,
           penIndex: 0,
           penDone: [],
           talked: [],
@@ -2591,6 +2690,9 @@
         n.penChar = analectsQuotes.some(([q]) => q === old.penChar)
           ? old.penChar
           : analectsQuotes[0][0];
+        n.penRule = Number.isInteger(old.penRule)
+          ? Math.max(0, Math.min(old.penRule, structureRules.length - 1))
+          : 0;
         n.penIndex = Number.isInteger(old.penIndex) ? old.penIndex : 0;
         n.penDone = Array.isArray(old.penDone) ? old.penDone : [];
         n.talked = Array.isArray(old.talked) ? old.talked : [];
@@ -2867,7 +2969,7 @@
           ["傾聽", "練習完整聽見對方"],
           ["求助", "清楚提出具體協助"],
         ];
-        return `<div class="card"><h2>自由修習</h2><p class="muted">修習是額外養成，不會要求等待幾週才能進入故事。每一技能每天可修習一次，或直接繼續已開放的篇章。</p><div class="practice-grid">${choices.map(([k, d]) => `<button class="practice-btn" data-act="practice" data-id="${k}" ${(s.practiceUsed || []).includes(k) ? "disabled" : ""}><b>${k}　${s.skills[k] || 0}</b><small>${d}${(s.practiceUsed || []).includes(k) ? " · 今日已修習" : ""}</small></button>`).join("")}</div><div class="divider"></div><div class="flex between"><div><h3>硬筆字練習</h3><p class="muted tiny">在九宮格上描寫品格字，練習筆畫穩定與專注。</p></div>${btn("開始寫字", "go", "pen", "primary")}</div><div class="flex" style="margin-top:12px">${btn("迎接新的一日（重置修習）", "next", "", "gold")}${btn("檢視修為與技能", "go", "skills")}</div></div>`;
+        return `<div class="card"><h2>自由修習</h2><p class="muted">修習是額外養成，不會要求等待幾週才能進入故事。每一技能每天可修習一次，或直接繼續已開放的篇章。</p><div class="practice-grid">${choices.map(([k, d]) => `<button class="practice-btn" data-act="practice" data-id="${k}" ${(s.practiceUsed || []).includes(k) ? "disabled" : ""}><b>${k}　${s.skills[k] || 0}</b><small>${d}${(s.practiceUsed || []).includes(k) ? " · 今日已修習" : ""}</small></button>`).join("")}</div><div class="divider"></div><div class="flex between"><div><h3>硬筆字結構練習</h3><p class="muted tiny">依「楷書間架結構九十二法」逐字描紅，同時理解字形結構。</p></div>${btn("開始寫字", "go", "pen", "primary")}</div><div class="flex" style="margin-top:12px">${btn("迎接新的一日（重置修習）", "next", "", "gold")}${btn("檢視修為與技能", "go", "skills")}</div></div>`;
       }
       function penView() {
         const chars = [
@@ -2888,13 +2990,14 @@
         return `<div class="card"><div class="flex between"><div><h2>《論語》硬筆臨摹</h2><p class="muted">採用芫荽硬筆楷書。先看範字，再沿淡字描紅；熟悉後可切換背臨。</p></div>${btn("返回修習", "go", "home")}</div><div class="pen-layout"><div><div class="pen-canvas-wrap"><div id="penGuide">${current[0]}</div><canvas id="penCanvas" aria-label="論語硬筆臨摹畫布"></canvas></div><div class="flex" style="margin-top:12px;justify-content:center">${btn("清除重寫", "pen-clear")}${btn(done ? "今日已完成" : "完成本句練習", "pen-finish", "", "gold")}</div></div><aside><div class="note"><b>今日句子</b><br><span style="font-family:'Iansui','KaiTi',serif;font-size:22px">${current[0]}</span><br><span class="tiny muted">《論語·${current[1]}》</span></div><div style="margin-top:12px">${btn("換一句隨機練習", "pen-random", "", "primary")}</div><h3 style="margin-top:16px">句子選擇</h3><div class="choices">${analectsQuotes.map(([text,chapter]) => `<button class="choice ${text === current[0] ? "selected" : ""}" data-act="pen-char" data-id="${text}"><span style="font-family:'Iansui','KaiTi',serif;font-size:18px">${text}</span><small>《論語·${chapter}》</small></button>`).join("")}</div><p class="tiny muted" style="margin-top:12px">完成每日第一句，可獲「觀照 +1、修為 +1」；不自動評斷字美醜。</p></aside></div></div>`;
       }
       function analectsCharPenView() {
-        const current = analectsQuotes.find(([text]) => text === s.penChar) || analectsQuotes[0];
-        const chars = Array.from(current[0]).filter(c => /[\u4e00-\u9fff]/.test(c));
+        const ruleIndex = Math.max(0, Math.min(s.penRule || 0, structureRules.length - 1));
+        const rule = structureRules[ruleIndex];
+        const chars = Array.from(rule[3]);
         const index = Math.max(0, Math.min(s.penIndex || 0, chars.length - 1));
         const char = chars[index];
-        const token = `${current[0]}#${index}`;
+        const token = `rule-${rule[0]}#${index}`;
         const done = (s.penDone || []).includes(token);
-        return `<div class="card"><div class="flex between"><div><h2>《論語》逐字硬筆臨摹</h2><p class="muted">手機版一次只練一個字。沿芫荽硬筆範字描紅，完成後換下一字。</p></div>${btn("返回修習", "go", "home")}</div><div class="pen-layout"><div><div class="pen-canvas-wrap"><div id="penGuide">${char}</div><canvas id="penCanvas" aria-label="論語單字硬筆臨摹畫布"></canvas></div><div class="flex" style="margin-top:12px;justify-content:center">${btn("上一字", "pen-prev", "", "ghost")}${btn("清除重寫", "pen-clear")}${btn(done ? "已記錄" : "完成此字", "pen-finish", "", "gold")}${btn(index === chars.length - 1 ? "本句完成" : "下一字", "pen-next", "", "primary")}</div></div><aside><div class="note"><b>第 ${index + 1}／${chars.length} 字：${char}</b><br><span style="font-family:'Iansui','KaiTi',serif;font-size:20px">${current[0]}</span><br><span class="tiny muted">《論語·${current[1]}》</span></div><div style="margin-top:12px">${btn("換一句隨機練習", "pen-random", "", "primary")}</div><h3 style="margin-top:16px">選擇句子</h3><div class="choices">${analectsQuotes.map(([text,chapter]) => `<button class="choice ${text === current[0] ? "selected" : ""}" data-act="pen-char" data-id="${text}"><span style="font-family:'Iansui','KaiTi',serif;font-size:18px">${text}</span><small>《論語·${chapter}》</small></button>`).join("")}</div></aside></div></div>`;
+        return `<div class="card"><div class="flex between"><div><h2>楷書結構 × 硬筆練習</h2><p class="muted">一次練一個例字：先讀結構要領，再沿芫荽硬筆範字描紅。</p></div>${btn("返回修習", "go", "home")}</div><div class="note" style="margin:12px 0;border-left:4px solid #e6bd6a"><span class="tiny muted">楷書間架結構九十二法・${ruleIndex + 1}／${structureRules.length}</span><br><b>第${rule[0]}法・${rule[1]}</b><p style="margin:7px 0">${rule[2]}</p><span class="tiny muted">本法例字：${chars.join("、")}｜目前：${char}（${index + 1}／${chars.length}）</span></div><div class="pen-layout"><div><div class="pen-canvas-wrap"><div id="penGuide">${char}</div><canvas id="penCanvas" aria-label="楷書結構硬筆練習畫布"></canvas></div><div class="flex" style="margin-top:12px;justify-content:center">${btn("上一字", "pen-prev", "", "ghost")}${btn("清除重寫", "pen-clear")}${btn(done ? "已記錄" : "完成此字", "pen-finish", "", "gold")}${btn(index === chars.length - 1 ? "下一法" : "下一字", "pen-next", "", "primary")}</div></div><aside><div class="note"><b>目前練習：${char}</b><br><span class="tiny muted">第 ${index + 1}／${chars.length} 字</span></div><div class="flex" style="margin-top:12px">${btn("上一法", "pen-rule-prev", "", "ghost")}${btn("隨機一法", "pen-random", "", "primary")}${btn("下一法", "pen-rule-next", "", "ghost")}</div><p class="tiny muted" style="margin-top:12px">練習順序：看結構 → 描紅 → 清除後背臨。系統只記錄完成，不評斷字的美醜。</p></aside></div></div>`;
       }
       function homeView() {
         const mainDone = mainOrder.filter((id) => s.done.includes(id)).length,
@@ -3059,9 +3162,10 @@
           toast("請先完成幾筆書寫，再記錄練習。 ");
           return;
         }
-        const chars = Array.from(s.penChar).filter(c => /[\u4e00-\u9fff]/.test(c));
+        const rule = structureRules[Math.max(0, Math.min(s.penRule || 0, structureRules.length - 1))];
+        const chars = Array.from(rule[3]);
         const index = Math.max(0, Math.min(s.penIndex || 0, chars.length - 1));
-        const token = `${s.penChar}#${index}`, char = chars[index];
+        const token = `rule-${rule[0]}#${index}`, char = chars[index];
         s.penDone = s.penDone || [];
         if (!s.penDone.includes(token)) {
           s.penDone.push(token);
@@ -3069,10 +3173,10 @@
             s.practiceUsed.push("硬筆");
             updateSkill("觀照", 1);
             s.cultivation = (s.cultivation || 0) + 1;
-            addLog(`《論語》硬筆練習「${char}」完成：觀照 +1，修為 +1`);
+            addLog(`楷書結構第${rule[0]}法「${char}」完成：觀照 +1，修為 +1`);
             toast("已記錄練習｜觀照 +1、修為 +1");
           } else {
-            addLog(`《論語》硬筆練習「${char}」完成`);
+            addLog(`楷書結構第${rule[0]}法「${char}」完成`);
             toast("已記錄這個字的練習");
           }
         } else toast("這個字今天已記錄，可繼續重寫。 ");
@@ -3236,26 +3340,45 @@
             render();
             break;
           case "pen-random": {
-            const options = analectsQuotes.filter(([text]) => text !== s.penChar);
-            s.penChar = options[Math.floor(Math.random() * options.length)][0];
+            let next = Math.floor(Math.random() * structureRules.length);
+            if (next === (s.penRule || 0)) next = (next + 1) % structureRules.length;
+            s.penRule = next;
             s.penIndex = 0;
             save();
             render();
             break;
           }
           case "pen-prev":
-            s.penIndex = Math.max(0, (s.penIndex || 0) - 1);
+            if ((s.penIndex || 0) === 0) {
+              s.penRule = ((s.penRule || 0) - 1 + structureRules.length) % structureRules.length;
+              s.penIndex = Array.from(structureRules[s.penRule][3]).length - 1;
+            } else s.penIndex = (s.penIndex || 0) - 1;
             save();
             render();
             break;
           case "pen-next": {
-            const total = Array.from(s.penChar).filter(c => /[\u4e00-\u9fff]/.test(c)).length;
-            if ((s.penIndex || 0) >= total - 1) { toast("這一句已練完，可換一句繼續。 "); break; }
-            s.penIndex = (s.penIndex || 0) + 1;
+            const total = Array.from(structureRules[s.penRule || 0][3]).length;
+            if ((s.penIndex || 0) >= total - 1) {
+              s.penRule = ((s.penRule || 0) + 1) % structureRules.length;
+              s.penIndex = 0;
+              toast("進入下一個結構法則");
+            } else s.penIndex = (s.penIndex || 0) + 1;
             save();
             render();
             break;
           }
+          case "pen-rule-prev":
+            s.penRule = ((s.penRule || 0) - 1 + structureRules.length) % structureRules.length;
+            s.penIndex = 0;
+            save();
+            render();
+            break;
+          case "pen-rule-next":
+            s.penRule = ((s.penRule || 0) + 1) % structureRules.length;
+            s.penIndex = 0;
+            save();
+            render();
+            break;
           case "pen-custom": {
             const value = document.getElementById("penCustom")?.value.trim();
             if (!value) {
