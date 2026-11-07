@@ -2837,8 +2837,8 @@
           2: "完成第 2 幕、修為 8，並提升義或明理",
           3: "完成第 3 幕、修為 14，並提升信或躬行",
           4: "完成第 4 幕、修為 20，並提升仁或觀照",
-          5: "完成第 6 幕、修為 30、克制技能 2、羈絆合計 2",
-          6: "完成第 8 幕、修為 40、技能合計 10、羈絆合計 4",
+          5: "完成第 6 幕、修為 30、克制技能 2、關係合計 2",
+          6: "完成第 8 幕、修為 40、技能合計 10、關係合計 4",
         };
         return `${r}：${hints[next] || "已達最高境界"}`;
       }
@@ -2923,7 +2923,7 @@
           ["mind", "心魔副本"],
           ["book", "情境冊"],
           ["journal", "修身錄"],
-          ["bond", "同門羈絆"],
+          ["bond", "同門關係"],
           ["settings", "存檔"],
         ];
         return `<nav class="nav">${items.map(([id, t]) => `<button class="nav-btn ${s.screen === id ? "active" : ""}" data-act="go" data-id="${id}">${t}</button>`).join("")}</nav>`;
@@ -3007,11 +3007,11 @@
         )
           .map(
             ([p, v]) =>
-              `<div class="bond-row"><span>${p}</span><span class="tiny muted">羈絆 ${v}</span></div>`,
+              `<div class="bond-row"><span>${p}</span><span class="tiny muted">關係 ${v}</span></div>`,
           )
           .join(
             "",
-          )}${btn("查看同門羈絆", "go", "bond")}</section><section class="card"><h2>情境歷練冊</h2><p class="muted">已完成事件可以重新體驗，收集不同路線與結局，不會重複刷取能力值。</p>${btn("開啟歷練冊", "go", "book")}</section></div>`;
+          )}${btn("查看同門關係", "go", "bond")}</section><section class="card"><h2>情境歷練冊</h2><p class="muted">已完成事件可以重新體驗，收集不同路線與結局，不會重複刷取能力值。</p>${btn("開啟歷練冊", "go", "book")}</section></div>`;
       }
       function bookView() {
         return `<div class="card"><h2>情境歷練冊</h2><p class="muted">重玩已完成事件可探索不同路線、對話與結局。重玩不會重複增加能力或修為。</p><div class="book-tabs"><button class="btn ${s.bookTab !== "mind" ? "primary" : ""}" data-act="booktab" data-id="main">主線與情境</button><button class="btn ${s.bookTab === "mind" ? "primary" : ""}" data-act="booktab" data-id="mind">心魔副本</button></div>${s.bookTab === "mind" ? mindList() : mainList()}</div>`;
@@ -3025,7 +3025,7 @@
                 .map(([k, v]) => `${k} +${v}`)
                 .join("、")}</small>`
             : ""
-        }${req ? `<small>${ready ? `技能加速已啟用：${req.skill}` : `尚需${req.skill}技能 ${req.min}（目前 ${s.skills[req.skill] || 0}）`}</small>` : s.playMode === "replay" ? "<small>探索其他分支與結局；重玩不增加能力值</small>" : "<small>選擇會影響修為、技能、羈絆與後續對話</small>"}</button>`;
+        }${req ? `<small>${ready ? `技能加速已啟用：${req.skill}` : `尚需${req.skill}技能 ${req.min}（目前 ${s.skills[req.skill] || 0}）`}</small>` : s.playMode === "replay" ? "<small>探索其他分支與結局；重玩不增加能力值</small>" : "<small>選擇會影響修為、技能、關係與後續對話</small>"}</button>`;
       }
       function storyView() {
         const e = story[s.current],
@@ -3039,7 +3039,7 @@
         return `<div class="card"><h2>修身錄</h2><p class="muted">首通、技能成長與不同結局都會留下紀錄。</p><div class="log">${s.journal.length ? s.journal.map((x) => `<p>${esc(x)}</p>`).join("") : "尚無紀錄。先完成一段歷練。"}</div>${btn("返回杏壇", "go", "home")}</div>`;
       }
       function bondView() {
-        return `<div class="card"><h2>同門羈絆</h2>${Object.entries(s.bonds)
+        return `<div class="card"><h2>同門關係</h2>${Object.entries(s.bonds)
           .map(
             ([k, v]) =>
               `<div class="relationship-row">${portrait(k, true)}<div class="relationship-main"><div class="flex between"><b>${k}</b><span class="muted">${v > 0 ? "+" : ""}${v}｜${v >= 5 ? "深厚信任" : v >= 2 ? "漸有默契" : v <= -2 ? "有所隔閡" : "初識"}</span></div><div class="bar"><span style="width:${Math.max(4, Math.min(100, 50 + v * 7))}%"></span></div></div></div>`,
@@ -3055,7 +3055,7 @@
           )
           .join(
             "",
-          )}</div>${s.talking ? `<div class="dialog" style="margin-top:12px">${portrait(s.talking)}<div class="speech"><div class="name">${s.talking}</div>${s.talking === "孔子" ? "學而不思則罔，思而不學則殆。你今日想從何處用功？" : s.talking === "子路" ? "勇氣若能與明理同行，行動便更能利益他人。" : s.talking === "子貢" ? "一項決策除了眼前利益，也要看長期信任與公平。" : s.talking === "顏回" ? "安住內心，也別忘了把所學化成照顧他人的行動。" : s.talking === "曾子" ? "吾日三省吾身。你今日最想檢視哪一個選擇？" : "做事要看資源、時程與每個人的承擔能力。"}<div style="margin-top:10px">${(s.talked || []).includes(s.talking) ? '<span class="tiny muted">本輪交流已記錄；羈絆仍會在共同歷練中成長。</span>' : btn("交流一段經歷（羈絆 +1）", "befriend", "", "primary")}</div></div></div>` : ""}${btn("返回杏壇", "go", "home")}</div>`;
+          )}</div>${s.talking ? `<div class="dialog" style="margin-top:12px">${portrait(s.talking)}<div class="speech"><div class="name">${s.talking}</div>${s.talking === "孔子" ? "學而不思則罔，思而不學則殆。你今日想從何處用功？" : s.talking === "子路" ? "勇氣若能與明理同行，行動便更能利益他人。" : s.talking === "子貢" ? "一項決策除了眼前利益，也要看長期信任與公平。" : s.talking === "顏回" ? "安住內心，也別忘了把所學化成照顧他人的行動。" : s.talking === "曾子" ? "吾日三省吾身。你今日最想檢視哪一個選擇？" : "做事要看資源、時程與每個人的承擔能力。"}<div style="margin-top:10px">${(s.talked || []).includes(s.talking) ? '<span class="tiny muted">本輪交流已記錄；關係仍會在共同歷練中成長。</span>' : btn("交流一段經歷（關係 +1）", "befriend", "", "primary")}</div></div></div>` : ""}${btn("返回杏壇", "go", "home")}</div>`;
       }
       function settingsView() {
         return `<div class="card"><h2>存檔與進度</h2><p>遊戲會自動儲存在此瀏覽器。V3 的四幕進度會自動接續到新版本；建議仍匯出一份 JSON 備份。</p><div class="flex">${btn("下載 JSON 備份", "export", "", "gold")}<label class="btn">匯入 JSON 備份<input id="import" type="file" accept="application/json,.json" style="display:none"></label>${btn("重新開始", "reset")}</div><p class="tiny muted">匯入會覆蓋目前進度。請勿刪除原本的瀏覽器存檔，除非已完成備份。</p>${btn("返回杏壇", "go", "home")}</div>`;
@@ -3413,10 +3413,10 @@
             if ((s.talked || []).includes(s.talking)) return;
             s.talked.push(s.talking);
             s.bonds[s.talking] = Math.min(10, (s.bonds[s.talking] || 0) + 1);
-            addLog(`與${s.talking}交流，羈絆 +1`);
+            addLog(`與${s.talking}交流，關係 +1`);
             save();
             render();
-            toast("同門羈絆 +1");
+            toast("同門關係 +1");
             break;
           case "export":
             exportFile();
